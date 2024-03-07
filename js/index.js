@@ -15,6 +15,7 @@ let errorParagraph = document.getElementById("error");
 let paragraphBTS = document.getElementById("bts");
 let paragraphLyceum = document.getElementById("astier");
 let buttonSetDelete = document.getElementById("button");
+let parentElement = document.getElementById("one");
 let number = document.getElementById("number");
 let counter = 0;
 let counterButton = 0;
@@ -85,10 +86,10 @@ buttonSetDelete.onclick = function () {
         paragraphLyceum.innerText = "Lycée Astier";
         paragraphBTS.id = "bts";
         paragraphLyceum.id = "astier";
-        document.body.appendChild(paragraphBTS);
-        document.body.appendChild(paragraphLyceum);
-        document.body.insertBefore(paragraphBTS, document.getElementById("one"));
-        document.body.insertBefore(paragraphLyceum, document.getElementById("one"));
+        parentElement.appendChild(paragraphBTS);
+        parentElement.appendChild(paragraphLyceum);
+        parentElement.insertBefore(paragraphBTS, buttonSetDelete);
+        parentElement.insertBefore(paragraphLyceum, buttonSetDelete);
     } else {
         paragraphBTS.remove();
         paragraphLyceum.remove();

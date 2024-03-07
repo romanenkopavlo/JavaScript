@@ -8,6 +8,16 @@ let elementH1 = document.getElementById("my_id");
 let elementH2 = document.getElementsByTagName("h2");
 let element3 = document.getElementsByClassName("c1");
 let element4 = document.getElementById("etudiant");
+let button = document.getElementsByName("b_valid")[0];
+let colors = document.getElementsByClassName("color");
+let paragraph = document.getElementById("stage");
+let errorParagraph = document.getElementById("error");
+let paragraphBTS = document.getElementById("bts");
+let paragraphLyceum = document.getElementById("astier");
+let buttonSetDelete = document.getElementById("button");
+let number = document.getElementById("number");
+let counter = 0;
+let counterButton = 0;
 
 elementH1.style.fontSize = "20px";
 elementH1.style.color = "yellow";
@@ -31,6 +41,57 @@ console.log("Inner Text: " + document.getElementById("id2").innerText);
 console.log("Inner HTML: " + document.getElementById("id2").innerHTML);
 console.log("Text Content: " + document.getElementById("id2").textContent);
 
-document.getElementsByName("b_valid")[0].onclick = function () {
-    element4.style.color = "grey";
+button.onclick = function () {
+    counter++;
+    if (counter % 2 === 0) {
+        button.style.backgroundColor = null;
+        element4.style.backgroundColor = null;
+
+    } else {
+        button.style.backgroundColor = "aqua";
+        element4.style.backgroundColor = "grey";
+    }
 };
+
+colors[0].onchange = function () {
+    paragraph.style.color = colors[0].value;
+}
+
+colors[1].onchange = function () {
+    paragraph.style.color = colors[1].value;
+}
+
+number.onkeyup = function () {
+    if (number.value > 20) {
+        errorParagraph.innerText = "La valeur incorrecte";
+        errorParagraph.style.color = "red";
+    } else {
+        errorParagraph.innerText = null;
+        errorParagraph.style.color = null;
+    }
+}
+
+buttonSetDelete.value = "Delete the paragraphs";
+paragraphBTS.innerText = "BTS CIEL";
+paragraphLyceum.innerText = "Lycée Astier";
+
+buttonSetDelete.onclick = function () {
+    counterButton++;
+    if (counterButton % 2 === 0) {
+        buttonSetDelete.value = "Delete the paragraphs";
+        paragraphBTS = document.createElement("p");
+        paragraphLyceum = document.createElement("p");
+        paragraphBTS.innerText = "BTS CIEL";
+        paragraphLyceum.innerText = "Lycée Astier";
+        paragraphBTS.id = "bts";
+        paragraphLyceum.id = "astier";
+        document.body.appendChild(paragraphBTS);
+        document.body.appendChild(paragraphLyceum);
+        document.body.insertBefore(paragraphBTS, document.getElementById("one"));
+        document.body.insertBefore(paragraphLyceum, document.getElementById("one"));
+    } else {
+        paragraphBTS.remove();
+        paragraphLyceum.remove();
+        buttonSetDelete.value = "Set the paragraphs";
+    }
+}
